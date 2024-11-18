@@ -5,7 +5,7 @@ import Input from './Components/Input'
 import ErrorBox from './Components/ErrorBox'
 import Button from './Components/Button'
 import { router as Route } from '@inertiajs/react'
-import toast from 'react-hot-toast'
+import toast, { CheckmarkIcon, ErrorIcon } from 'react-hot-toast'
 
 export default function StoreUser () {
     const [state, setState] = useState({
@@ -15,6 +15,7 @@ export default function StoreUser () {
         phone: '',
         address: ''
     })
+
     const [error, setError] = useState({})
     function handleSubmit (e) {
         e.preventDefault()
@@ -22,6 +23,10 @@ export default function StoreUser () {
             onError: errors => {
                 console.log(errors)
                 setError(errors)
+                toast('Please! resolve the errors...', {
+                    className: 'text-red-800 text-xl',
+                    icon: <ErrorIcon />
+                })
             },
             onSuccess: success => {
                 setState({
@@ -31,8 +36,11 @@ export default function StoreUser () {
                     phone: '',
                     address: ''
                 })
+                toast('Data inserted successfully!', {
+                    className: 'text-gray-700',
+                    icon: <CheckmarkIcon />
+                })
                 setError({})
-                toast('Gopal')
             },
             preserveScroll: true
         })
@@ -48,6 +56,10 @@ export default function StoreUser () {
             address: ''
         })
         setError({})
+        toast('Form was reset!', {
+            className: 'text-white bg-red-300',
+            icon: <CheckmarkIcon className=' bg-red-600' />
+        })
     }
 
     return (
