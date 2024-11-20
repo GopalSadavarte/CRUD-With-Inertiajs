@@ -1,5 +1,4 @@
-import { AiFillPlusCircle } from 'react-icons/ai'
-import { AiFillDelete } from 'react-icons/ai'
+import { AiFillPlusCircle, AiFillDelete } from 'react-icons/ai'
 export default function Button ({ type = 'submit', func }) {
     return type === 'submit' ? (
         <button

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Layout from './Layout/Layout'
 import Label from './Components/Label'
 import Input from './Components/Input'
@@ -7,7 +7,6 @@ import Button from './Components/Button'
 import { router as Route } from '@inertiajs/react'
 import toast, { CheckmarkIcon, ErrorIcon } from 'react-hot-toast'
 import { Context } from './Components/Context'
-import { useContext } from 'react'
 
 export default function StoreUser () {
     const [state, setState] = useState({

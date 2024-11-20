@@ -3,10 +3,10 @@ import Input from './Components/Input'
 import Label from './Components/Label'
 import Button from './Components/Button'
 import ErrorBox from './Components/ErrorBox'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { router } from '@inertiajs/react'
-import { useContext } from 'react'
 import { Context } from './Components/Context'
+import toast, { CheckmarkIcon } from 'react-hot-toast'
 
 export default function UpdateUser ({ user }) {
     const [userState, setUserState] = useState({
@@ -22,12 +22,20 @@ export default function UpdateUser ({ user }) {
         e.preventDefault()
         router.put(`/users/update/${user.id}`, userState, {
             onSuccess: () => {
+                toast('Data updated successfully!', {
+                    icon: <CheckmarkIcon />,
+                    className: 'bg-green-400 text-white text-xl'
+                })
                 router.visit('/')
             },
             onError: errors => {
                 setError(errors)
+                toast.error('please resolve the errors..', {
+                    className: 'text-xl bg-red-400 text-white'
+                })
             },
-            preserveScroll: true
+            preserveScroll: true,
+            preserveState: true
         })
     }
     return (
