@@ -1,13 +1,21 @@
 import Layout from './Layout/Layout'
 import { Link } from '@inertiajs/react'
+import { useContext } from 'react'
+import { Context } from './Components/Context'
+import { MdEdit, MdDelete } from 'react-icons/md'
 export default function Home ({ users }) {
     let number = 1
     let border = 'border-2 border-solid border-gray-200'
     let thTdStyle =
         'p-3 px-4 text-gray-700 border-2 border-solid border-gray-200'
+    const theme = useContext(Context)
     return (
         <Layout>
-            <div className='content mx-3'>
+            <div
+                className={`content mx-3 w-9/12 ${
+                    theme[0] === 'light' ? '' : 'bg-gray-300 text-black'
+                }`}
+            >
                 <div className='info p-3'>
                     <h2 className='heading text-purple-700 text-3xl font-extralight'>
                         Dashboard
@@ -56,7 +64,7 @@ export default function Home ({ users }) {
                                                 as='button'
                                                 className='p-2 bg-blue-600 rounded-lg text-white text-center hover:bg-blue-300 hover:text-blue-800 transition-all delay-100 text-sm'
                                             >
-                                                Edit
+                                                <MdEdit />
                                             </Link>
                                         </td>
                                         <td className={thTdStyle}>
@@ -65,7 +73,7 @@ export default function Home ({ users }) {
                                                 as='button'
                                                 className='p-2 bg-red-600 text-white rounded-lg text-center hover:bg-red-300 hover:text-gray-500 transition-all delay-100 text-sm'
                                             >
-                                                Delete
+                                                <MdDelete />
                                             </Link>
                                         </td>
                                     </tr>

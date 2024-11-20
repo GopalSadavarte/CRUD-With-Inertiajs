@@ -5,6 +5,8 @@ import Button from './Components/Button'
 import ErrorBox from './Components/ErrorBox'
 import { useState } from 'react'
 import { router } from '@inertiajs/react'
+import { useContext } from 'react'
+import { Context } from './Components/Context'
 
 export default function UpdateUser ({ user }) {
     const [userState, setUserState] = useState({
@@ -15,7 +17,7 @@ export default function UpdateUser ({ user }) {
         address: user.address
     })
     const [errors, setError] = useState({})
-
+    const theme = useContext(Context)
     const handleSubmit = e => {
         e.preventDefault()
         router.put(`/users/update/${user.id}`, userState, {
@@ -30,7 +32,11 @@ export default function UpdateUser ({ user }) {
     }
     return (
         <Layout>
-            <div className='container-fluid mx-8 my-5 w-9/12'>
+            <div
+                className={`container-fluid mx-8 my-5 w-9/12 ${
+                    theme[0] === 'light' ? '' : 'bg-gray-300'
+                }`}
+            >
                 <div className='heading mx-1'>
                     <h1 className='text-3xl uppercase p-4 text-gray-800 font-extralight'>
                         Update User

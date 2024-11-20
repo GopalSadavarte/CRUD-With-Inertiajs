@@ -1,10 +1,19 @@
-import { Link } from '@inertiajs/react'
+import { Link, usePage } from '@inertiajs/react'
+import { useContext } from 'react'
+import { Context } from '../Components/Context'
 export default function Sidebar () {
+    const page = usePage()
     function isActive (name) {
-        return window.location.href.includes(name)
+        return page.url === name
     }
+
+    const theme = useContext(Context)
     return (
-        <aside className='min-h-screen w-52 bg-gray-500 rounded-sm'>
+        <aside
+            className={`min-h-screen w-52 ${
+                theme[0] === 'light' ? 'bg-gray-300' : 'bg-gray-500'
+            } rounded-sm`}
+        >
             <hr className='border border-gray-400' />
             <div className='nav-links px-8 py-3 '>
                 <ul>
@@ -14,7 +23,7 @@ export default function Sidebar () {
                             href='/'
                             as='button'
                             className={
-                                isActive('/home')
+                                isActive('/')
                                     ? 'text-xl text-blue-900 hover:opacity-10 hover:transition-opacity hover:delay-200 '
                                     : 'text-xl text-white hover:opacity-10 hover:transition-opacity hover:delay-200 '
                             }

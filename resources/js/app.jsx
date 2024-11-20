@@ -4,6 +4,7 @@ import { createInertiaApp } from '@inertiajs/react'
 import { createRoot } from 'react-dom/client'
 import { Toaster } from 'react-hot-toast'
 import { StrictMode } from 'react'
+import { ContextProvider } from './Pages/Components/Context'
 
 createInertiaApp({
     resolve: name => {
@@ -13,14 +14,16 @@ createInertiaApp({
     setup ({ el, App, props }) {
         createRoot(el).render(
             <StrictMode>
-                <Toaster
-                    position='top-center'
-                    reverseOrder={false}
-                    toastOptions={{
-                        className: 'w-full text-xl text-blue-700'
-                    }}
-                />
-                <App {...props} />
+                <ContextProvider>
+                    <Toaster
+                        position='top-center'
+                        reverseOrder={false}
+                        toastOptions={{
+                            className: 'w-full text-xl text-blue-700'
+                        }}
+                    />
+                    <App {...props} />
+                </ContextProvider>
             </StrictMode>
         )
     }

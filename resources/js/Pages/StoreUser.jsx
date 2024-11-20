@@ -6,6 +6,8 @@ import ErrorBox from './Components/ErrorBox'
 import Button from './Components/Button'
 import { router as Route } from '@inertiajs/react'
 import toast, { CheckmarkIcon, ErrorIcon } from 'react-hot-toast'
+import { Context } from './Components/Context'
+import { useContext } from 'react'
 
 export default function StoreUser () {
     const [state, setState] = useState({
@@ -16,6 +18,8 @@ export default function StoreUser () {
         address: ''
     })
 
+    const theme = useContext(Context)
+
     const [error, setError] = useState({})
     function handleSubmit (e) {
         e.preventDefault()
@@ -24,7 +28,7 @@ export default function StoreUser () {
                 console.log(errors)
                 setError(errors)
                 toast('Please! resolve the errors...', {
-                    className: 'text-red-800 text-xl',
+                    className: 'bg-red-300 text-white',
                     icon: <ErrorIcon />
                 })
             },
@@ -64,7 +68,11 @@ export default function StoreUser () {
 
     return (
         <Layout>
-            <div className='container w-9/12 p-3'>
+            <div
+                className={`container w-9/12 p-3 ${
+                    theme[0] === 'light' ? '' : 'bg-gray-300'
+                }`}
+            >
                 <div className='form-heading'>
                     <h1 className='heading text-3xl text-gray-900 font-extralight ml-5 p-4'>
                         New User
@@ -132,7 +140,7 @@ export default function StoreUser () {
                             />
                             <ErrorBox errorKey={error.address} />
                         </div>
-                        <div className='form-element'>
+                        <div className='form-element flex'>
                             <Button />
                             <Button type='reset' func={handleCancel} />
                         </div>
