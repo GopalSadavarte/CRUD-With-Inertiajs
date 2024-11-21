@@ -48,15 +48,15 @@ export default function Sidebar () {
                     <li className='p-3'>
                         <Link
                             preserveScroll
-                            href='#'
+                            href='/user/chart'
                             as='button'
                             className={
-                                isActive('/service')
+                                isActive('/user/chart')
                                     ? 'text-xl text-blue-900 hover:opacity-10 hover:transition-opacity hover:delay-200 '
                                     : 'text-xl text-white hover:opacity-10 hover:transition-opacity hover:delay-200 '
                             }
                         >
-                            Services
+                            User Chart
                         </Link>
                     </li>
                     <li className='p-3'>

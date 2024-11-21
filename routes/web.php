@@ -11,4 +11,5 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/user/edit/{id}', 'edit');
     Route::put('/users/update/{id}', 'update');
     Route::get('/user/delete/{id}', 'destroy');
+    Route::get('/user/chart', 'getInfo');
 });

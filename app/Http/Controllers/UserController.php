@@ -64,6 +64,11 @@ class UserController extends Controller
         User::whereId($id)->update($request->all());
     }
 
+    public function getInfo()
+    {
+        $user = User::all();
+        return Inertia::render('VisualInfo', compact('user'));
+    }
     /**
      * Remove the specified resource from storage.
      */
